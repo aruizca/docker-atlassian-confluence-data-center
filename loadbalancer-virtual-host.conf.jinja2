@@ -1,5 +1,5 @@
 {% set amountNodes = NODES | int %}
-<VirtualHost *:50640>
+<VirtualHost *:50650>
     ServerName confluencecluster
     <Proxy *>
         Require all granted
@@ -8,12 +8,12 @@
 
     <Proxy balancer://confluence-synchrony-cluster>
         {% for n in range(1, (amountNodes+1)) %}
-            BalancerMember http://confluence-cluster-640-node{{ n }}:8091 route={{ n }}
+            BalancerMember http://confluence-cluster-650-node{{ n }}:8091 route={{ n }}
         {% endfor %}
     </Proxy>
     <Proxy balancer://confluence-synchrony-cluster-ws>
         {% for n in range(1, (amountNodes+1)) %}
-            BalancerMember ws://confluence-cluster-640-node{{ n }}:8091 route={{ n }}
+            BalancerMember ws://confluence-cluster-650-node{{ n }}:8091 route={{ n }}
         {% endfor %}
     </Proxy>
     ProxyPass /synchrony   balancer://confluence-synchrony-cluster/synchrony  stickysession=ROUTEID
@@ -27,7 +27,7 @@
 
     <Proxy balancer://confluence-cluster>
         {% for n in range(1, (amountNodes+1)) %}
-            BalancerMember http://confluence-cluster-640-node{{ n }}:8090 route={{ n }}
+            BalancerMember http://confluence-cluster-650-node{{ n }}:8090 route={{ n }}
         {% endfor %}
     </Proxy>
     ProxyPass /            balancer://confluence-cluster/                     stickysession=ROUTEID
