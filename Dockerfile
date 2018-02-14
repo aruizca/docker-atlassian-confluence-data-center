@@ -31,7 +31,7 @@ RUN chmod u+rx,g+rx,o+rx,a-w /work-private/docker-entrypoint.sh && \
     touch /var/www/logs/access.log && chown -R worker:worker /var/www/logs/access.log && \
     chown -R worker:worker /var/log/apache2 && \
     mkdir /run/apache2 && chown -R worker:worker /run/apache2 && \
-    sed -i -e 's/Listen 80/Listen 50660\nServerName localhost/g' /etc/apache2/httpd.conf && \
+    sed -i -e 's/Listen 80/Listen 50671\nServerName localhost/g' /etc/apache2/httpd.conf && \
     sed -i -e 's/AllowOverride\s*None/AllowOverride All/ig' /etc/apache2/httpd.conf && \
     echo "LoadModule proxy_module modules/mod_proxy.so" >> /etc/apache2/httpd.conf && \
     echo "LoadModule rewrite_module modules/mod_rewrite.so" >> /etc/apache2/httpd.conf && \
@@ -51,7 +51,7 @@ COPY loadbalancer-virtual-host.conf.jinja2 /work-private
 # WORKDIR
 #
 WORKDIR /work
-EXPOSE 50660
+EXPOSE 50671
 
 #
 # RUN
