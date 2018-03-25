@@ -1,4 +1,4 @@
-FROM codeclou/docker-atlassian-base-images:confluence-6.7.1
+FROM codeclou/docker-atlassian-base-images:confluence-6.8.0
 # See: https://github.com/codeclou/docker-atlassian-base-images
 
 #
